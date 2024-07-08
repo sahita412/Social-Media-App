@@ -7,7 +7,7 @@ export const loginUser = (email, password)=> async(dispatch)=> {
             type:"LoginRequest"
         });
 
-        const { data } = await axios.post("/api/v1/login",
+        const { data } = await axios.post("https://social-media-app-zeta-teal.vercel.app/api/v1/login",
             {email,password},
             {headers:{
                 "Content-Type":"application/json"
@@ -110,7 +110,7 @@ export const getFollowingPosts = () => async (dispatch) =>{
             type: "PostOfFollowingRequest",
         });
         
-        const { data } = await axios.get("/api/v1/posts");
+        const { data } = await axios.get("https://social-media-app-zeta-teal.vercel.app/api/v1/posts");
         
         dispatch({
             type: "PostOfFollowingSuccess",
