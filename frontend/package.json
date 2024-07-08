@@ -44,5 +44,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://social-media-app-zeta-teal.vercel.app/"
+  "proxy": "https://social-media-app-zeta-teal.vercel.app/api/v1/"
 }
