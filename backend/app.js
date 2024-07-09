@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== "production"){
 
 //using middleware
 const corsOptions = {
-    origin: '*',
+    origin: 'https://social-media-app-frontend-self.vercel.app',
     credentials: true,
 };
 app.use(cors(corsOptions));
