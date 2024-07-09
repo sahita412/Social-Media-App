@@ -11,7 +11,13 @@ if (process.env.NODE_ENV !== "production"){
 }
 
 //using middleware
-app.use(cors({ origin: 'https://social-media-app-frontend-self.vercel.app' }));
+app.use(cors({ 
+    origin: 'https://social-media-app-frontend-self.vercel.app',
+    credentials: true,
+    methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
+    allowedHeaders: ['Content-Type'],
+    exposedHeaders: ['Content-Type']
+ }));
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit:'50mb', extended: true}));
 app.use(cookieParser());
