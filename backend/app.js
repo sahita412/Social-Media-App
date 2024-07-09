@@ -11,7 +11,10 @@ if (process.env.NODE_ENV !== "production"){
 }
 
 //using middleware
-app.use(cors());
+app.use(cors({ 
+    origin: '*',
+    credentials: true
+ }));
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit:'50mb', extended: true}));
 app.use(cookieParser());
