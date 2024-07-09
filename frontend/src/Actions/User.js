@@ -1,5 +1,5 @@
-import axios from "axios";
-
+// import axios from "axios";
+import { instance } from "../axiosInstance.js";
 export const loginUser = (email, password)=> async(dispatch)=> {
     try {
 
@@ -7,7 +7,7 @@ export const loginUser = (email, password)=> async(dispatch)=> {
             type:"LoginRequest"
         });
 
-        const { data } = await axios.post("https://social-media-app-zeta-teal.vercel.app/api/v1/login",
+        const { data } = await instance.post("https://social-media-app-zeta-teal.vercel.app/api/v1/login",
             {email,password},
             {headers:{
                 "Content-Type":"application/json"
@@ -34,7 +34,7 @@ export const registerUser = (name, email, password, avatar)=> async(dispatch)=> 
             type:"RegisterRequest"
         });
 
-        const { data } = await axios.post("https://social-media-app-zeta-teal.vercel.app/api/v1/register",
+        const { data } = await instance.post("https://social-media-app-zeta-teal.vercel.app/api/v1/register",
             {name, email, password, avatar},
             {headers:{
                 "Content-Type":"application/json"
@@ -61,7 +61,7 @@ export const updateProfile = (name, email, avatar)=> async(dispatch)=> {
             type:"updateProfileRequest"
         });
 
-        const { data } = await axios.put("https://social-media-app-zeta-teal.vercel.app/api/v1/update/profile",
+        const { data } = await instance.put("https://social-media-app-zeta-teal.vercel.app/api/v1/update/profile",
             {name, email, avatar},
             {headers:{
                 "Content-Type":"application/json"
@@ -88,7 +88,7 @@ export const loadUser = ()=> async(dispatch)=> {
             type:"LoadUserRequest"
         });
         
-        const { data } = await axios.get("https://social-media-app-zeta-teal.vercel.app/api/v1/me");
+        const { data } = await instance.get("https://social-media-app-zeta-teal.vercel.app/api/v1/me");
         
         dispatch({
             type:"LoadUserSuccess",
@@ -110,7 +110,7 @@ export const getFollowingPosts = () => async (dispatch) =>{
             type: "PostOfFollowingRequest",
         });
         
-        const { data } = await axios.get("https://social-media-app-zeta-teal.vercel.app/api/v1/posts");
+        const { data } = await instance.get("https://social-media-app-zeta-teal.vercel.app/api/v1/posts");
         
         dispatch({
             type: "PostOfFollowingSuccess",
@@ -131,7 +131,7 @@ export const getMyPosts = () => async (dispatch) =>{
             type: "myPostsRequest",
         });
         
-        const { data } = await axios.get("https://social-media-app-zeta-teal.vercel.app/api/v1/my/posts");
+        const { data } = await instance.get("https://social-media-app-zeta-teal.vercel.app/api/v1/my/posts");
         
         dispatch({
             type: "myPostsSuccess",
@@ -153,7 +153,7 @@ export const getAllUsers = (name = "") => async (dispatch) =>{
             type: "allUsersRequest",
         });
         
-        const { data } = await axios.get(`https://social-media-app-zeta-teal.vercel.app/api/v1/users?name=${name}`);
+        const { data } = await instance.get(`https://social-media-app-zeta-teal.vercel.app/api/v1/users?name=${name}`);
         
         dispatch({
             type: "allUsersSuccess",
@@ -175,7 +175,7 @@ export const logoutUser = ()=> async(dispatch)=> {
             type:"LogoutUserRequest"
         });
 
-        await axios.get("https://social-media-app-zeta-teal.vercel.app/api/v1/logout");
+        await instance.get("https://social-media-app-zeta-teal.vercel.app/api/v1/logout");
 
         dispatch({
             type:"LogoutUserSuccess",
@@ -196,7 +196,7 @@ export const updatePassword = (oldPassword, newPassword)=> async(dispatch)=> {
             type:"updatePasswordRequest"
         });
 
-        const { data } = await axios.put("https://social-media-app-zeta-teal.vercel.app/api/v1/update/password",
+        const { data } = await instance.put("https://social-media-app-zeta-teal.vercel.app/api/v1/update/password",
             {oldPassword, newPassword},
             {headers:{
                 "Content-Type":"application/json"
@@ -223,7 +223,7 @@ export const deleteMyProfile = ()=> async(dispatch)=> {
             type:"deleteProfileRequest"
         });
 
-        const { data } = await axios.delete("https://social-media-app-zeta-teal.vercel.app/api/v1/delete/me");
+        const { data } = await instance.delete("https://social-media-app-zeta-teal.vercel.app/api/v1/delete/me");
 
         dispatch({
             type:"deleteProfileSuccess",
@@ -245,7 +245,7 @@ export const forgotPassword = (email)=> async(dispatch)=> {
             type:"forgotPasswordRequest"
         });
 
-        const { data } = await axios.post("https://social-media-app-zeta-teal.vercel.app/api/v1/forgot/password", {
+        const { data } = await instance.post("https://social-media-app-zeta-teal.vercel.app/api/v1/forgot/password", {
             email
         },{
             headers:{"Content-Type":"application/json"},
@@ -271,7 +271,7 @@ export const resetPassword = (token, password)=> async(dispatch)=> {
             type:"resetPasswordRequest"
         });
 
-        const { data } = await axios.put(`https://social-media-app-zeta-teal.vercel.app/api/v1/password/reset/${token}`, {
+        const { data } = await instance.put(`https://social-media-app-zeta-teal.vercel.app/api/v1/password/reset/${token}`, {
             password
         },{
             headers:{"Content-Type":"application/json"},
@@ -296,7 +296,7 @@ export const getUserPosts = (id) => async (dispatch) =>{
             type: "userPostsRequest",
         });
         
-        const { data } = await axios.get(`https://social-media-app-zeta-teal.vercel.app/api/v1/userposts/${id}`);
+        const { data } = await instance.get(`https://social-media-app-zeta-teal.vercel.app/api/v1/userposts/${id}`);
         
         dispatch({
             type: "userPostsSuccess",
@@ -316,7 +316,7 @@ export const getUserProfile = (id) => async (dispatch) =>{
             type: "userProfileRequest",
         });
         
-        const { data } = await axios.get(`https://social-media-app-zeta-teal.vercel.app/api/v1/user/${id}`);
+        const { data } = await instance.get(`https://social-media-app-zeta-teal.vercel.app/api/v1/user/${id}`);
         
         dispatch({
             type: "userProfileSuccess",
@@ -337,7 +337,7 @@ export const followAndUnfollowUser = (id) => async (dispatch) =>{
             type: "followUserRequest",
         });
         
-        const { data } = await axios.get(`https://social-media-app-zeta-teal.vercel.app/api/v1/follow/${id}`);
+        const { data } = await instance.get(`https://social-media-app-zeta-teal.vercel.app/api/v1/follow/${id}`);
         
         dispatch({
             type: "followUserSuccess",
