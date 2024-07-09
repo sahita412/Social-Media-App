@@ -3,11 +3,7 @@ const app = express();
 
 import cookieParser from 'cookie-parser';
 
-// import path from 'path';
-// import { fileURLToPath } from 'url';
-// import { dirname } from 'path';
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = dirname(__filename);
+import cors from 'cors';
 
 import dotenv from "dotenv"
 if (process.env.NODE_ENV !== "production"){
@@ -15,9 +11,10 @@ if (process.env.NODE_ENV !== "production"){
 }
 
 //using middleware
+app.use(cors({ origin: 'https://social-media-app-frontend-self.vercel.app' }));
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit:'50mb', extended: true}));
-app.use(cookieParser())
+app.use(cookieParser());
 
 
 //Importing routes
@@ -28,10 +25,5 @@ import user from './routes/user.js';
 app.use("/api/v1", post);
 app.use("/api/v1", user);
 
-// app.use(express.static(path.join(__dirname,"../frontend/build")));
-
-// app.get("*", (req,res)=>{
-//     res.sendFile(path.resolve(__dirname,"../frontend/build/index.html"));
-// })
 
 export default app;
