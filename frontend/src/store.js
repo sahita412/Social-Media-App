@@ -16,4 +16,6 @@ const store = configureStore({
     }
 });
 
+const base_url = "https://social-media-app-zeta-teal.vercel.app";
+
 export default store;

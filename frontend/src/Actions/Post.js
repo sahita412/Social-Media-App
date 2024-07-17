@@ -1,12 +1,18 @@
 import axios from "axios";
+import base_url from "../store.js"
 
 export const likePost = (id) => async (dispatch) =>{
     try {
+
+        const config = {
+            withCredentials: true,
+          };
+
         dispatch({
             type: "likeRequest",
         });
 
-        const { data } = await axios.get(`https://social-media-app-zeta-teal.vercel.app/api/v1/post/${id}`);
+        const { data } = await axios.get(`${base_url}/api/v1/post/${id}`, config);
 
         dispatch({
             type: "likeSuccess",
@@ -27,14 +33,15 @@ export const addCommentOnPost = (id, comment) => async (dispatch) =>{
             type: "addCommentRequest",
         });
 
-        const { data } = await axios.put(`https://social-media-app-zeta-teal.vercel.app/api/v1/post/comment/${id}`,
+        const { data } = await axios.put(`${base_url}/api/v1/post/comment/${id}`,
         {
             comment
         },
         {
             headers:{
                 "Content-Type": "application/json"
-            }
+            },
+            withCredentials:true,
         });
 
         dispatch({
@@ -56,8 +63,9 @@ export const deleteCommentOnPost = (id, commentId) => async (dispatch) =>{
             type: "deleteCommentRequest",
         });
 
-        const { data } = await axios.delete(`https://social-media-app-zeta-teal.vercel.app/api/v1/post/comment/${id}`,{
+        const { data } = await axios.delete(`${base_url}/api/v1/post/comment/${id}`,{
             data: {commentId},
+            withCredentials:true,
         });
 
         dispatch({
@@ -79,14 +87,15 @@ export const createNewPost = (caption, image) => async (dispatch) =>{
             type: "newPostRequest",
         });
 
-        const { data } = await axios.post(`https://social-media-app-zeta-teal.vercel.app/api/v1/post/upload`,
+        const { data } = await axios.post(`${base_url}/api/v1/post/upload`,
             {
                 caption,
                 image,
             },{
                 headers:{
                     "Content-Type": "application/json"
-                }
+                },
+                withCredentials:true,
             }
         );
 
@@ -109,13 +118,14 @@ export const updatePost = (caption, id) => async (dispatch) =>{
             type: "updateCaptionRequest",
         });
 
-        const { data } = await axios.put(`https://social-media-app-zeta-teal.vercel.app/api/v1/post/${id}`,
+        const { data } = await axios.put(`${base_url}/api/v1/post/${id}`,
             {
                 caption,
             },{
                 headers:{
                     "Content-Type": "application/json"
-                }
+                },
+                withCredentials:true,
             }
         );
 
@@ -134,11 +144,16 @@ export const updatePost = (caption, id) => async (dispatch) =>{
 
 export const deletePost = (id) => async (dispatch) =>{
     try {
+
+        const config = {
+            withCredentials: true,
+        };
+        
         dispatch({
             type: "deletePostRequest",
         });
 
-        const { data } = await axios.delete(`https://social-media-app-zeta-teal.vercel.app/api/v1/post/${id}`);
+        const { data } = await axios.delete(`${base_url}/api/v1/post/${id}`, config);
 
         dispatch({
             type: "deletePostSuccess",
