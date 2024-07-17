@@ -4,7 +4,8 @@
 /frontend/.pnp
 /frontend.pnp.js
 
-
+.DS_Store
+/frontend/.DS_Store
 /frontend/coverage
 
 /frontend/build
